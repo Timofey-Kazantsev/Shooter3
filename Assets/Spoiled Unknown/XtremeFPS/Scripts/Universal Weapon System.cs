@@ -202,6 +202,7 @@ namespace XtremeFPS.WeaponSystem
             ParabolicBullet parabolicBullet = bulletObject.GetComponent<ParabolicBullet>();
             parabolicBullet.Initialize(shootPoint, bulletSpeed, bulletDamage, bulletGravitationalForce, bulletLifeTime, particlesPrefab);
 
+
             //Graphics
             muzzleFlash.Play();
 

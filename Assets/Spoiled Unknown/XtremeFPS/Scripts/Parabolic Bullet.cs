@@ -93,8 +93,16 @@ namespace XtremeFPS.WeaponSystem
             GameObject HitObject = PoolManager.Instance.SpawnObject(particlesPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
             HitObject.transform.parent = hit.transform;
 
+            if (hit.transform.TryGetComponent<HealthBot>(out HealthBot health112))
+            {
+                Debug.Log("23");
+                health112.Damage(damage);
+            }
+
             OnBulletDestroy();
         }
+
+      
 
         private IEnumerator DestroyBullets()
         {

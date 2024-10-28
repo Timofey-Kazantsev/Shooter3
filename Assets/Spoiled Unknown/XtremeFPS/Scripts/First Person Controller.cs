@@ -21,6 +21,8 @@ namespace XtremeFPS.FPSController
         public float transitionSpeed;
         public float walkSpeed = 5f;
         public float walkSoundSpeed;
+        public float health = 100f;
+        public float damage = 10f;
 
         public CharacterController CharacterController {  get; private set; }
         private FPSInputManager inputManager;
@@ -228,6 +230,17 @@ namespace XtremeFPS.FPSController
         #endregion
 
         #region Private Methods
+        private void Damage()
+        {
+            health -= damage;
+            
+            if (health <= 0)
+            {
+                Destroy(this);
+            }
+        
+        }
+        
         private void PlayerInputs()
         {
             mouseDirectionX = inputManager.mouseDirection.x * mouseSensitivity * Time.deltaTime + hRecoil;
