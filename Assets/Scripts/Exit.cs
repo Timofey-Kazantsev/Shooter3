@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour
 {
-    // Этот метод можно назначить на кнопку в UI
-    public void ExitGame()
+    // Метод для выхода из игры
+    public void QuitGame()
     {
         // Выйти из режима Play Mode в редакторе Unity
 #if UNITY_EDITOR
