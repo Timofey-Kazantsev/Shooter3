@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine;
 using XtremeFPS.PoolingSystem;
 using XtremeFPS.Interfaces;
+using Unity.VisualScripting;
 
 namespace XtremeFPS.WeaponSystem
 {
@@ -93,10 +94,14 @@ namespace XtremeFPS.WeaponSystem
             GameObject HitObject = PoolManager.Instance.SpawnObject(particlesPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
             HitObject.transform.parent = hit.transform;
 
-            if (hit.transform.TryGetComponent<HealthBot>(out HealthBot health112))
+            if (hit.transform.TryGetComponent<HealthBot>(out HealthBot health2))
             {
-                Debug.Log("23");
-                health112.Damage(damage);
+                Debug.Log(health2);
+                health2.Damage(damage);
+                if (health2.health == 0)
+                {
+                    //health2.gameObject.SetActive(false);
+                }
             }
 
             OnBulletDestroy();

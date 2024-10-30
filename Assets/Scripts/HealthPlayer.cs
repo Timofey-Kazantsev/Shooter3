@@ -1,33 +1,31 @@
-using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace XtremeFPS.WeaponSystem
 {
-    public class HealthBot : MonoBehaviour
+    public class HealthPlayer : MonoBehaviour
     {
-        [SerializeField] private GameObject owner;
+
         public float health = 100f;
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
-            owner = gameObject;
+
         }
 
         public void Damage(float damage)
         {
             health -= damage;
-            Debug.Log(owner);
-            if (owner.name == "Player Armature")
-            {
-                Debug.Log("123123");
-            }
+
             if (health <= 0)
             {
                 Destroy(gameObject);
+                SceneManager.LoadScene("Menu");
             }
         }
     }
 }
-    

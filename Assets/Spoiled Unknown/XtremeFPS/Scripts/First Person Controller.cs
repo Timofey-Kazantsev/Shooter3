@@ -155,6 +155,7 @@ namespace XtremeFPS.FPSController
         public float interactionRange;
 
         private IPickup closestPickup = null;
+
         #endregion
 
         #region MonoBehaviour Callbacks
@@ -230,6 +231,7 @@ namespace XtremeFPS.FPSController
         #endregion
 
         #region Private Methods
+
         private void Damage()
         {
             health -= damage;
@@ -479,6 +481,8 @@ namespace XtremeFPS.FPSController
             }
             else if (!IsGrounded && jumpVelocity.y < 0f) jumpVelocity.y = -1f;
         }
+
+
         #region Sound Management
         private void DetectSurfaceAndMovement()
         {
