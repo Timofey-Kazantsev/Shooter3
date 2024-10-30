@@ -103,6 +103,11 @@ namespace XtremeFPS.WeaponSystem
                     //health2.gameObject.SetActive(false);
                 }
             }
+            if (hit.transform.TryGetComponent<HealthPlayer>(out HealthPlayer health_player))
+            {
+                Debug.Log(health2);
+                health_player.Damage(damage);
+            }
 
             OnBulletDestroy();
         }

@@ -12309,7 +12309,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2d064d60ac258d848b3e2dee1a223058, type: 3}
   landingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
   jumpingAudioClip: {fileID: 8300000, guid: 56d2ae87641afd04ab7327adc39cb823, type: 3}
-  slidingAudioClip: {fileID: 8300000, guid: d261e6d42697b4b44b1e4f8bc462561a, type: 3}
+  slidingAudioClip: {fileID: 8300000, guid: 33ac71ad82209594bacf07b2c1772b51, type: 3}
   footstepSensitivity: 0.44
   canPush: 1
   pushLayersID: 3
@@ -12515,7 +12515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13a42b5d0166224e9b636929bca7d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 580162818}
   health: 100
 --- !u!1001 &587617503
 PrefabInstance:
@@ -26959,7 +26958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13a42b5d0166224e9b636929bca7d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   health: 100
 --- !u!136 &1194184730
 CapsuleCollider:
@@ -40361,7 +40359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13a42b5d0166224e9b636929bca7d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   health: 100
 --- !u!136 &1820198036
 CapsuleCollider:
