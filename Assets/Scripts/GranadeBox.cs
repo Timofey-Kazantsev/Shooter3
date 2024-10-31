@@ -5,7 +5,7 @@ namespace XtremeFPS.FPSController
     public class GrenadeBox : MonoBehaviour
     {
         [SerializeField] private int grenadesInBox = 3; // Количество гранат в ящике
-        [SerializeField] private KeyCode interactKey = KeyCode.E; // Клавиша для взаимодействия
+        [SerializeField] private KeyCode interactKey = KeyCode.F; // Клавиша для взаимодействия
         [SerializeField] private float interactionDistance = 3f; // Максимальное расстояние для взаимодействия
 
         private void Update()

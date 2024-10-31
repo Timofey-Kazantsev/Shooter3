@@ -10,6 +10,7 @@ namespace XtremeFPS.WeaponSystem
     public class HealthPlayer : MonoBehaviour
     {
         public float health = 100f;
+        public float maxHealth = 100f;
 
         public void Damage(float damage)
         {
@@ -18,6 +19,12 @@ namespace XtremeFPS.WeaponSystem
             {
                 SceneManager.LoadScene("Menu");
             }
+        }
+
+        public void Heal(float healAmount)
+        {
+            health = Mathf.Min(health + healAmount, maxHealth); // Не превышаем максимальное здоровье
+            Debug.Log("Здоровье восстановлено. Текущее здоровье: " + health);
         }
     }
 }
