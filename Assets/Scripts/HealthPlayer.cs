@@ -9,18 +9,11 @@ namespace XtremeFPS.WeaponSystem
 {
     public class HealthPlayer : MonoBehaviour
     {
-
         public float health = 100f;
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
 
         public void Damage(float damage)
         {
             health -= damage;
-
             if (health <= 0)
             {
                 SceneManager.LoadScene("Menu");

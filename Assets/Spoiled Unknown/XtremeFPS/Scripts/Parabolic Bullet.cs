@@ -12,6 +12,8 @@ namespace XtremeFPS.WeaponSystem
     public class ParabolicBullet : MonoBehaviour
     {
         #region Variables
+        [SerializeField] private GameObject bloodPrefab;
+
         private float speed;
         private float damage;
         private float gravity;
@@ -25,14 +27,14 @@ namespace XtremeFPS.WeaponSystem
         #endregion
 
         #region Initialization
-        public void Initialize(Transform startPoint, float speed, float damage, float gravity, float bulletLifetime, GameObject particlePrefab)
+        public void Initialize(Transform startPoint, float speed, float damage, float gravity, float bulletLifetime, GameObject parparticlePrefab)
         {
             this.startPosition = startPoint.position;
             this.startForward = startPoint.forward.normalized;
             this.speed = speed;
             this.damage = damage;
             this.gravity = gravity;
-            this.particlesPrefab = particlePrefab;
+            this.particlesPrefab = particlesPrefab;
             this.bulletLiftime = bulletLifetime;
         }
         #endregion
@@ -89,30 +91,36 @@ namespace XtremeFPS.WeaponSystem
 
         private void OnHit(RaycastHit hit)
         {
-            if (hit.transform.TryGetComponent<IShootableObject>(out IShootableObject shootableObject)) shootableObject.OnHit(hit, damage);
-
-            GameObject HitObject = PoolManager.Instance.SpawnObject(particlesPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
-            HitObject.transform.parent = hit.transform;
+            GameObject HitObject = PoolManager.Instance.SpawnObject(bloodPrefab, hit.point + hit.normal * 0.05f, Quaternion.LookRotation(hit.normal));
+            //HitObject.transform.parent = hit.transform;
 
             if (hit.transform.TryGetComponent<HealthBot>(out HealthBot health2))
             {
-                Debug.Log(health2);
-                health2.Damage(damage);
-                if (health2.health == 0)
+                GameObject explosionEffect = Instantiate(bloodPrefab, hit.point, Quaternion.LookRotation(-hit.normal));
+                ParticleSystem particleSystem = explosionEffect.GetComponent<ParticleSystem>();
+                if (particleSystem != null)
                 {
-                    //health2.gameObject.SetActive(false);
+                    var mainModule = particleSystem.main;
+                    mainModule.startSizeMultiplier = 0.1f; // Увеличьте размер частиц
+                    mainModule.startSpeedMultiplier = 2f; // Увеличьте скорость частиц, если нужно
                 }
+                else
+                {
+                    Debug.LogError("Failed to spawn blood prefab.");
+                }
+                Destroy(explosionEffect, 5f);
+
+                //HitObject = PoolManager.Instance.SpawnObject(bloodPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                health2.Damage(damage);
             }
-            if (hit.transform.TryGetComponent<HealthPlayer>(out HealthPlayer health_player))
+            else if (hit.transform.TryGetComponent<HealthPlayer>(out HealthPlayer health_player))
             {
-                Debug.Log(health2);
+                Debug.Log(health_player);
                 health_player.Damage(damage);
             }
 
             OnBulletDestroy();
         }
-
-      
 
         private IEnumerator DestroyBullets()
         {

@@ -1,28 +1,25 @@
-/*Copyright © Spoiled Unknown*/
-/*2024*/
-/*Note: This is an important editor script*/
-
-using XtremeFPS.WeaponSystem;
-using UnityEditor;
-using UnityEngine;
-
 namespace XtremeFPS.Editor
 {
+    using UnityEditor;
+    using UnityEngine;
+    using XtremeFPS.WeaponSystem;
+
     [CustomEditor(typeof(ParabolicBullet)), CanEditMultipleObjects]
     public class ParabolicBulletEditor : UnityEditor.Editor
     {
-        ParabolicBullet parabolicBullet;
         SerializedObject serParabolicBullet_UI;
+        SerializedProperty bloodPrefabProperty;
 
         private void OnEnable()
         {
-            parabolicBullet = (ParabolicBullet)target;
-            serParabolicBullet_UI = new SerializedObject(parabolicBullet);
+            serParabolicBullet_UI = new SerializedObject(target);
+            bloodPrefabProperty = serParabolicBullet_UI.FindProperty("bloodPrefab");
         }
 
         public override void OnInspectorGUI()
         {
             serParabolicBullet_UI.Update();
+
             #region Intro
             EditorGUILayout.Space();
             GUI.color = Color.black;
@@ -33,20 +30,19 @@ namespace XtremeFPS.Editor
             EditorGUILayout.Space();
             GUI.color = Color.black;
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
-
             #endregion
+
+            #region Blood Prefab Field
+            EditorGUILayout.PropertyField(bloodPrefabProperty, new GUIContent("Blood Prefab"));
+            #endregion
+
             #region Update Changes
-            //Sets any changes from the prefab
             if (GUI.changed)
             {
-                EditorUtility.SetDirty(parabolicBullet);
-                Undo.RecordObject(parabolicBullet, "Parabolic Bullet Change");
+                EditorUtility.SetDirty(target);
                 serParabolicBullet_UI.ApplyModifiedProperties();
             }
             #endregion
         }
     }
-
 }
-
-

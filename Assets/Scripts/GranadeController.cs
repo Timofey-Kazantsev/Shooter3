@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace XtremeFPS.FPSController
 {
     public class GranadeController : MonoBehaviour
@@ -14,6 +15,9 @@ namespace XtremeFPS.FPSController
         [SerializeField] private float explosionDelay = 2f;  // Задержка взрыва
 
         private int currentGrenades;                         // Текущее количество гранат
+
+        public int CurrentGrenades => currentGrenades; // Свойство для доступа к текущему количеству гранат
+        public int MaxGrenades => maxGrenades; // Свойство для доступа к максимальному количеству гранат
 
         private void Start()
         {
