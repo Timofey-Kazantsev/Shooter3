@@ -48,6 +48,7 @@ namespace XtremeFPS.WeaponSystem
         public float reloadTime;
         public bool aiming;
         public bool hardMode;
+        public int maxAmmo;
 
         private int bulletsShot;
         private bool readyToShoot;
@@ -134,6 +135,7 @@ namespace XtremeFPS.WeaponSystem
         #region MonoBehaviour Callbacks
         private void Start()
         {
+            maxAmmo = totalBullets;
             inputManager = FPSInputManager.Instance;
             bulletSoundSource = GetComponent<AudioSource>();
 
@@ -163,6 +165,11 @@ namespace XtremeFPS.WeaponSystem
         #endregion
 
         #region Private Methods
+        public void addAmmo(int amount)
+        {
+            totalBullets += amount;
+        }
+
         private void PlayerWeaponsInput()
         {
              if (isGunAuto) shooting = inputManager.isFiringHold;
