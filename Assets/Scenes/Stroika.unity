@@ -7516,7 +7516,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1322314552149874, guid: fb3d5dfd858d50849b27275f4d9be34c, type: 3}
       propertyPath: m_Name
-      value: SM_Chr_Builder_Female_01
+      value: BotWarriorEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4882229898550376, guid: fb3d5dfd858d50849b27275f4d9be34c, type: 3}
       propertyPath: m_LocalPosition.x
