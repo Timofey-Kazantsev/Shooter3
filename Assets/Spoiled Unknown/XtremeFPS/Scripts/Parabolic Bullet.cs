@@ -27,16 +27,17 @@ namespace XtremeFPS.WeaponSystem
         #endregion
 
         #region Initialization
-        public void Initialize(Transform startPoint, float speed, float damage, float gravity, float bulletLifetime, GameObject parparticlePrefab)
+        public void Initialize(Transform startPoint, float speed, float damage, float gravity, float bulletLifetime, GameObject particlePrefab)
         {
             this.startPosition = startPoint.position;
             this.startForward = startPoint.forward.normalized;
             this.speed = speed;
             this.damage = damage;
             this.gravity = gravity;
-            this.particlesPrefab = particlesPrefab;
+            this.particlesPrefab = particlePrefab;  // Обновлено
             this.bulletLiftime = bulletLifetime;
         }
+
         #endregion
 
         #region MonoBehaviour Callbacks
