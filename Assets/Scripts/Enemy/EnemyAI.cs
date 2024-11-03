@@ -97,6 +97,6 @@ public class EnemyAI : MonoBehaviour
 
         Debug.Log("Attack");
 
-        // Добавьте здесь логику для атаки игрока (например, нанесение урона)
+        
     }
 }
