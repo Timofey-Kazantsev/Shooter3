@@ -13,22 +13,11 @@ namespace XtremeFPS.WeaponSystem
         public float bulletSpeed = 20f;
         public float bulletDamage = 10f;
         public float bulletLifetime = 3f;
-        public float gravityEffect = 1f;
+        public float gravityEffect = 0f;
 
-        private void Update()
+        public void Fire()
         {
-            // Если пришло время для выстрела
-            if (Time.time >= nextFireTime)
-            {
-                Fire();
-                nextFireTime = Time.time + 1f / fireRate;
-            }
-        }
-
-        private void Fire()
-        {
-            // Берем пулю из пула объектов
-            GameObject bullet = PoolManager.Instance.SpawnObject(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             if (bullet != null)
             {
                 // Инициализация параметров пули

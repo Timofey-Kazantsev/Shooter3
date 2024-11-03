@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using XtremeFPS.PoolingSystem;
 
 namespace XtremeFPS.WeaponSystem
 {
@@ -36,7 +35,7 @@ namespace XtremeFPS.WeaponSystem
             float timeSinceStart = Time.time - startTime;
             if (timeSinceStart >= lifetime)
             {
-                PoolManager.Instance.DespawnObject(gameObject); // Возвращаем в пул, если истекло время жизни
+                Destroy(gameObject); // Уничтожаем пулю, если истекло время жизни
                 return;
             }
 
@@ -51,7 +50,7 @@ namespace XtremeFPS.WeaponSystem
                 {
                     player.Damage(damage); // Наносим урон игроку
                 }
-                PoolManager.Instance.DespawnObject(gameObject); // Возвращаем пулю в пул после столкновения
+                Destroy(gameObject); // Уничтожаем пулю после столкновения
             }
         }
     }
