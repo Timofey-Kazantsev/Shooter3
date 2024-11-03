@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 50.9
-    agentClimb: 0.4
+    agentClimb: 1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -50673,99 +50673,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb6c08ac52b93c4e91f8542c6881e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &2816200439266636718
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -27.206987
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.569998
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 17.469965
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7213218
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.016156146
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.6921345
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.019586599
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 20857347517402625, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 85148183437197836, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: bulletText
-      value: 
-      objectReference: {fileID: 1151655620}
-    - target: {fileID: 85148183437197836, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: cameraRoot
-      value: 
-      objectReference: {fileID: 7772645283368326011}
-    - target: {fileID: 85148183437197836, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: weaponHolder
-      value: 
-      objectReference: {fileID: 5986932745082501562}
-    - target: {fileID: 85148183437197836, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: playerArmature
-      value: 
-      objectReference: {fileID: 1669728265900358753}
-    - target: {fileID: 5325805891580953671, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: bulletCount
-      value: 
-      objectReference: {fileID: 1151655620}
-    - target: {fileID: 5325805891580953671, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: weaponHolder
-      value: 
-      objectReference: {fileID: 7785405865546858413}
-    - target: {fileID: 5325805891580953671, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: fpsController
-      value: 
-      objectReference: {fileID: 2411168702428461584}
-    - target: {fileID: 5325805891580953671, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: gunPositionHolder
-      value: 
-      objectReference: {fileID: 5986932745082501562}
-    - target: {fileID: 5325805891580953671, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: cameraRecoilHolder
-      value: 
-      objectReference: {fileID: 5554004004951536903}
-    - target: {fileID: 6424226236224635199, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
-      propertyPath: m_Name
-      value: Pistol
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 17fca06ec7fb22840a6e08d3ac894575, type: 3}
 --- !u!4 &5554004004951536903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8380145480969669559, guid: ec8b2e11df964f24b9a4096511e1b790, type: 3}
@@ -50896,7 +50803,6 @@ SceneRoots:
   - {fileID: 1531220955}
   - {fileID: 7500008523902666144}
   - {fileID: 610363542}
-  - {fileID: 2816200439266636718}
   - {fileID: 1823568592}
   - {fileID: 1279561705}
   - {fileID: 1462965067}

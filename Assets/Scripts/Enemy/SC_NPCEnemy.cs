@@ -95,7 +95,7 @@ namespace XtremeFPS.WeaponSystem
         // Функция преследования игрока
         private void Chase()
         {
-            Debug.Log("Chase");
+            
 
             if (isPatrolling)
             {
@@ -109,6 +109,7 @@ namespace XtremeFPS.WeaponSystem
             }
 
             agent.SetDestination(playerTransform.position);
+            Debug.Log("Chase");
         }
 
         // Функция атаки
