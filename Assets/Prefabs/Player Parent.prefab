@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a6042b5d867f72c419c5dc7b59efd643, type: 2}
+  - {fileID: 2100000, guid: 1ca19005705d2d340951807ed4474fe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -613,15 +613,12 @@ MonoBehaviour:
   - objectToPool: {fileID: 1660800468149884, guid: afc9c0a592c2d3e408e67df46bacd613, type: 3}
     objectAmount: 200
     canExpand: 0
-    canRecycle: 0
   - objectToPool: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
     objectAmount: 2
     canExpand: 0
-    canRecycle: 1
   - objectToPool: {fileID: 5022607508920917637, guid: c4a92788f3aab074baf288aaed06ee96, type: 3}
     objectAmount: 20
     canExpand: 0
-    canRecycle: 1
 --- !u!1 &4723423661871568754
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +817,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7824299439ec64941bb271a882649e38, type: 2}
+  - {fileID: 2100000, guid: 1ca19005705d2d340951807ed4474fe1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
