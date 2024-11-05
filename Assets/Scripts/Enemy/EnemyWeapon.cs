@@ -13,7 +13,7 @@ namespace XtremeFPS.WeaponSystem
         public float bulletSpeed = 20f;
         public float bulletDamage = 10f;
         public float bulletLifetime = 3f;
-        public float gravityEffect = 0f;
+        public float gravityEffect = 1f;
 
         public void Fire()
         {

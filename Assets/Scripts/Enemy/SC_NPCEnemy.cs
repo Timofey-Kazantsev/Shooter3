@@ -7,10 +7,9 @@ namespace XtremeFPS.WeaponSystem
     [RequireComponent(typeof(NavMeshAgent))]
     public class SC_NPCEnemy : MonoBehaviour
     {
-        // Публичные параметры
         public float patrolSpeed = 2f;
         public float chaseSpeed = 5f;
-        public float attackDistance = 2f;
+        public float attackDistance = 1f;
         public float chaseRange = 10f;
         public float npcHP = 100;
         public float attackRate = 0.5f;
@@ -21,15 +20,13 @@ namespace XtremeFPS.WeaponSystem
         public Transform playerTransform;
         public GameObject enemyWeaponGO;
 
-
-        // Приватные переменные
         private NavMeshAgent agent;
         private bool alreadyAttacked = false;
         private float nextAttackTime = 0f;
-        private int currentPatrolIndex;
-        private bool isPatrolling = true;
-        private bool isAttacking = true;
         private EnemyWeapon enemyWeapon;
+
+        private enum State { Patrolling, Chasing, Attacking }
+        private State currentState;
 
         private void Start()
         {
@@ -43,133 +40,104 @@ namespace XtremeFPS.WeaponSystem
             agent = GetComponent<NavMeshAgent>();
             agent.stoppingDistance = attackDistance;
 
-            currentPatrolIndex = 0;
-            Patrol();
-
-
+            currentState = State.Patrolling;
+            agent.SetDestination(patrolPoints[0].position);
         }
 
         private void Update()
         {
             float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
 
-            if (distanceToPlayer <= attackDistance)
+            switch (currentState)
             {
-                isAttacking = true;
-                Attack();
-            }
-            else if (distanceToPlayer <= chaseRange)
-            {
-                Chase();
-            }
-            else
-            {
-                Patrol();
+                case State.Patrolling:
+                    HandlePatrolState(distanceToPlayer);
+                    break;
+                case State.Chasing:
+                    HandleChaseState(distanceToPlayer);
+                    break;
+                case State.Attacking:
+                    HandleAttackState(distanceToPlayer);
+                    break;
             }
         }
 
-        // Функция патрулирования между точками
-        private void Patrol()
+        private void HandlePatrolState(float distanceToPlayer)
         {
             Debug.Log("Patrol");
-            isAttacking = false;
 
-            if (!isPatrolling)
+            agent.speed = patrolSpeed;
+            animator.SetBool("IsPatrolling", true);
+            animator.SetBool("IsChasing", false);
+            animator.SetBool("IsAttacking", false);
+
+            if (distanceToPlayer <= chaseRange)
             {
-                isPatrolling = true;
-                agent.speed = patrolSpeed;
-
-                // Анимация патрулирования
-                animator.SetBool("isPatrolling", true);
-                animator.SetBool("isChasing", false);
-                animator.SetBool("isAttacking", false);
+                currentState = State.Chasing;
+                return;
             }
 
-            if (agent.remainingDistance <= agent.stoppingDistance && patrolPoints.Length > 0)
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
-                agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+                agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Length)].position);
             }
         }
 
-        // Функция преследования игрока
-        private void Chase()
+        private void HandleChaseState(float distanceToPlayer)
         {
-            
-
-            if (isPatrolling)
-            {
-                isPatrolling = false;
-                agent.speed = chaseSpeed;
-
-                // Анимация преследования
-                animator.SetBool("isPatrolling", false);
-                animator.SetBool("isChasing", true);
-                animator.SetBool("isAttacking", false);
-            }
-
-            agent.SetDestination(playerTransform.position);
             Debug.Log("Chase");
+
+            agent.speed = chaseSpeed;
+            agent.SetDestination(playerTransform.position);
+
+            animator.SetBool("IsPatrolling", false);
+            animator.SetBool("IsChasing", true);
+            animator.SetBool("IsAttacking", false);
+
+            if (distanceToPlayer <= attackDistance)
+            {
+                currentState = State.Attacking;
+            }
+            else if (distanceToPlayer > chaseRange)
+            {
+                currentState = State.Patrolling;
+                agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Length)].position);
+            }
         }
 
-        // Функция атаки
-        private void Attack()
+        private void HandleAttackState(float distanceToPlayer)
         {
-            if (isAttacking)
+            Debug.Log("Attack");
+            agent.isStopped = true;
+            transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z));
+
+            animator.SetBool("IsPatrolling", false);
+            animator.SetBool("IsChasing", false);
+            animator.SetBool("IsAttacking", true);
+
+            if (!alreadyAttacked && Time.time >= nextAttackTime)
             {
-                Debug.Log("Attack");
-
-                agent.isStopped = true;
-                transform.LookAt(new Vector3(playerTransform.position.x, transform.position.y, playerTransform.position.z));
-
-                // Анимация атаки
-                animator.SetBool("isPatrolling", false);
-                animator.SetBool("isChasing", false);
-                animator.SetBool("isAttacking", true);
-                // Атака, если прошло время до следующей атаки
-                if (!alreadyAttacked && Time.time >= nextAttackTime)
-                {
-                    // Вызываем метод атаки через компонент EnemyWeapon, если пришло время
-                    if (!alreadyAttacked && Time.time >= nextAttackTime)
-                    {
-                        AttackPlayer();
-                        alreadyAttacked = true;
-                        nextAttackTime = Time.time + attackRate;
-
-                        // Сбрасываем флаг атаки
-                        Invoke(nameof(ResetAttack), attackRate);
-                    }
-                }
+                AttackPlayer();
+                alreadyAttacked = true;
+                nextAttackTime = Time.time + attackRate;
+                Invoke(nameof(ResetAttack), attackRate);
             }
 
+            if (distanceToPlayer > attackDistance)
+            {
+                agent.isStopped = false;
+                currentState = State.Chasing;
+            }
         }
+
         private void AttackPlayer()
         {
             if (enemyWeapon != null)
             {
-                enemyWeapon.Fire(); // Выстрел через EnemyWeapon
+                enemyWeapon.Fire();
             }
         }
 
-        /*// Выстрел из оружия врага
-        private void FireProjectile()
-        {
-            if (firePoint != null)
-            {
-                GameObject bullet = Instantiate(Resources.Load("EnemyBullet") as GameObject, firePoint.position, firePoint.rotation);
-                if (bullet != null)
-                {
-                    EnemyBullet bulletScript = bullet.GetComponent<EnemyBullet>();
-                    if (bulletScript != null)
-                    {
-                        Vector3 directionToPlayer = (playerTransform.position - firePoint.position).normalized;
-                        bulletScript.Initialize(directionToPlayer, 32f, 10f, 9.81f, 5f);
-                    }
-                }
-            }
-        }*/
-
-        // Сброс состояния атаки
         private void ResetAttack()
         {
             alreadyAttacked = false;

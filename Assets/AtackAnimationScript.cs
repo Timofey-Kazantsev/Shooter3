@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using XtremeFPS.WeaponSystem;
 
 public class AtackAnimationScript : StateMachineBehaviour
 {
@@ -13,7 +15,7 @@ public class AtackAnimationScript : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-      
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
