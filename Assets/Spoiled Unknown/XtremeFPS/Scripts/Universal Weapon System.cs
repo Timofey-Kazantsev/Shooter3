@@ -152,7 +152,7 @@ namespace XtremeFPS.WeaponSystem
         private void Update()
         {
             PlayerWeaponsInput();
-
+            
             DetermineAim();
 
             HandleWeaponRecoil();
@@ -168,6 +168,7 @@ namespace XtremeFPS.WeaponSystem
         public void addAmmo(int amount)
         {
             totalBullets += amount;
+            SetBulletCountUI();
         }
 
         private void PlayerWeaponsInput()

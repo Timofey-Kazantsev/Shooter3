@@ -1,6 +1,3 @@
-/*Copyright © Spoiled Unknown*/
-/*2024*/
-
 using TMPro;
 using UnityEngine;
 using XtremeFPS.Interfaces;

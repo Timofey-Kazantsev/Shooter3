@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Gun
   - Point
+  - Water
+  - Concrete
+  - Gravel
+  - Metals
+  - Wood
+  - Push
   layers:
   - Default
   - TransparentFX
