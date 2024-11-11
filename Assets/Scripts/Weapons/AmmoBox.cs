@@ -26,15 +26,16 @@ public class AmmoBox : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         GameObject gun = GameObject.FindGameObjectWithTag("Gun");
         GameObject weaponSlot = GameObject.Find("Player Parent/Player Armature/Camera Holder/Camera Follow/Weapon Holder/Weapon Recoils");
-        UniversalWeaponSystem gunSystem = weaponSlot.transform.GetChild(0).GetComponent<UniversalWeaponSystem>();
+        
 
         if (player != null && Vector3.Distance(transform.position,
             player.transform.position) <= interactionDistance && gun != null)
         {
             
-            if (Input.GetKeyDown(interactKey) && gunSystem != null)
+            if (Input.GetKeyDown(interactKey))
             {
-                if (ammoInBox > 0 && gunSystem.totalBullets < gunSystem.maxAmmo)
+                UniversalWeaponSystem gunSystem = weaponSlot.transform.GetChild(0).GetComponent<UniversalWeaponSystem>();
+                if (gunSystem != null && ammoInBox > 0 && gunSystem.totalBullets < gunSystem.maxAmmo)
                 {
                     bulletsToAdd = gunSystem.maxAmmo - gunSystem.totalBullets;
                     if (gunSystem.name == "AK-47")
