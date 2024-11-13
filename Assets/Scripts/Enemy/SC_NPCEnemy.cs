@@ -38,7 +38,7 @@ namespace XtremeFPS.WeaponSystem
 
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
             agent = GetComponent<NavMeshAgent>();
-            agent.stoppingDistance = attackDistance;
+            agent.stoppingDistance = 1;
 
             currentState = State.Patrolling;
             agent.SetDestination(patrolPoints[0].position);
@@ -77,7 +77,7 @@ namespace XtremeFPS.WeaponSystem
                 return;
             }
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (agent.remainingDistance <= 1)
             {
                 agent.SetDestination(patrolPoints[Random.Range(0, patrolPoints.Length)].position);
             }
