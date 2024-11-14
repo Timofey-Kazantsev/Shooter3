@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionEffectPrefab: {fileID: 191186, guid: 079954accd64b32419ec069129c81273, type: 3}
-  explosionSound: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: bee43bfbd742fec45ba9900867155548, type: 3}
   explosionRadius: 0
   explosionDamage: 0
   explosionDelay: 0

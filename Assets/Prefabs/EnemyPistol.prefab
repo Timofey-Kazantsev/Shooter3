@@ -202,7 +202,7 @@ MonoBehaviour:
   muzzleFlashPrefab: {fileID: 7859100164685662946}
   firePoint: {fileID: 8992090756833221487}
   fireRate: 1
-  fireSound: {fileID: 0}
+  fireSound: {fileID: 8300000, guid: 60c75f6f9ecda4a4caac49477a0ffc89, type: 3}
   bulletSpeed: 20
   bulletDamage: 10
   bulletLifetime: 3
