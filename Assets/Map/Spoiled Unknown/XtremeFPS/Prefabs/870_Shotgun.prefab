@@ -212,8 +212,7 @@ MonoBehaviour:
   fpsController: {fileID: 0}
   shootPoint: {fileID: 8534382446140191583}
   muzzleFlash: {fileID: 4348039252030211533}
-  bulletPrefab: {fileID: 1660800468149884, guid: afc9c0a592c2d3e408e67df46bacd613,
-    type: 3}
+  bulletPrefab: {fileID: 1660800468149884, guid: afc9c0a592c2d3e408e67df46bacd613, type: 3}
   bulletCount: {fileID: 0}
   animator: {fileID: 5177216876238798077}
   aimUIImage: {fileID: 0}
@@ -223,8 +222,7 @@ MonoBehaviour:
   bulletGravitationalForce: 25
   ShellPosition: {fileID: 9051877298075917541}
   Shell: {fileID: 5022607508920917637, guid: c4a92788f3aab074baf288aaed06ee96, type: 3}
-  particlesPrefab: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d,
-    type: 3}
+  particlesPrefab: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   isGunAuto: 1
   isAimHold: 0
   timeBetweenEachShots: 0
@@ -235,6 +233,7 @@ MonoBehaviour:
   reloadTime: 1.5
   aiming: 1
   hardMode: 0
+  maxAmmo: 0
   canAim: 1
   weaponHolder: {fileID: 0}
   aimingLocalPosition: {x: 0.002, y: -0.068, z: 0.239}
@@ -498,13 +497,11 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
 --- !u!198 &4348039252030211533 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 198000012944515248, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
   m_PrefabInstance: {fileID: 4532936108818031997}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4532323968877532359 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4000011227296186, guid: 9defeac88977c0d448aa4541073ee9e4, type: 3}
   m_PrefabInstance: {fileID: 4532936108818031997}
   m_PrefabAsset: {fileID: 0}
