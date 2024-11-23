@@ -11,6 +11,7 @@ namespace XtremeFPS.WeaponSystem
         [SerializeField] private float fireRate = 1f; // Частота выстрелов
         [SerializeField] private AudioClip fireSound; // Звук выстрела
         private AudioSource audioSource;
+        private bool isFiring;
 
         private float nextFireTime = 0f;
         public float bulletSpeed = 20f;
@@ -20,6 +21,7 @@ namespace XtremeFPS.WeaponSystem
 
         private void Awake()
         {
+            isFiring = true;
             // Получаем или добавляем AudioSource на этот объект
             audioSource = GetComponent<AudioSource>();
             if (audioSource == null)
@@ -30,31 +32,39 @@ namespace XtremeFPS.WeaponSystem
 
         public void Fire()
         {
-            // Создание пули
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            if (bullet != null)
+            if (isFiring)
             {
-                EnemyBullet bulletComponent = bullet.GetComponent<EnemyBullet>();
-                bulletComponent.Initialize(firePoint.forward, bulletSpeed, bulletDamage, gravityEffect, bulletLifetime);
-            }
-
-            // Создание эффекта выстрела (ParticleSystem)
-            if (muzzleFlashPrefab != null)
-            {
-                GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, firePoint.position, firePoint.rotation);
-                ParticleSystem particleSystem = muzzleFlash.GetComponent<ParticleSystem>();
-                if (particleSystem != null)
+                // Создание пули
+                GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                if (bullet != null)
                 {
-                    particleSystem.Play();
-                    Destroy(muzzleFlash, particleSystem.main.duration); // Удаляем префаб после окончания анимации
+                    EnemyBullet bulletComponent = bullet.GetComponent<EnemyBullet>();
+                    bulletComponent.Initialize(firePoint.forward, bulletSpeed, bulletDamage, gravityEffect, bulletLifetime);
+                }
+
+                // Создание эффекта выстрела (ParticleSystem)
+                if (muzzleFlashPrefab != null)
+                {
+                    GameObject muzzleFlash = Instantiate(muzzleFlashPrefab, firePoint.position, firePoint.rotation);
+                    ParticleSystem particleSystem = muzzleFlash.GetComponent<ParticleSystem>();
+                    if (particleSystem != null)
+                    {
+                        particleSystem.Play();
+                        Destroy(muzzleFlash, particleSystem.main.duration); // Удаляем префаб после окончания анимации
+                    }
+                }
+
+                // Воспроизведение звука выстрела
+                if (fireSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(fireSound);
                 }
             }
+        }
 
-            // Воспроизведение звука выстрела
-            if (fireSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(fireSound);
-            }
+        private void OnDestroy()
+        {
+            isFiring = false;
         }
     }
 }

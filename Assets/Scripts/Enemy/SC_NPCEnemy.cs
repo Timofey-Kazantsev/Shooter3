@@ -25,8 +25,8 @@ namespace XtremeFPS.WeaponSystem
         private float nextAttackTime = 0f;
         private EnemyWeapon enemyWeapon;
 
-        private enum State { Patrolling, Chasing, Attacking }
-        private State currentState;
+        public enum State { Patrolling, Chasing, Attacking, Dead }
+        public State currentState;
 
         private void Start()
         {
@@ -58,6 +58,9 @@ namespace XtremeFPS.WeaponSystem
                     break;
                 case State.Attacking:
                     HandleAttackState(distanceToPlayer);
+                    break;
+                case State.Dead:
+                    HandleDeadState();
                     break;
             }
         }
@@ -128,6 +131,13 @@ namespace XtremeFPS.WeaponSystem
                 agent.isStopped = false;
                 currentState = State.Chasing;
             }
+        }
+
+        public void HandleDeadState()
+        {
+            animator.SetBool("IsPatrolling", false);
+            animator.SetBool("IsChasing", false);
+            animator.SetBool("IsAttacking", false);
         }
 
         private void AttackPlayer()
