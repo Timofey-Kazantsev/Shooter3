@@ -13,6 +13,7 @@ namespace XtremeFPS.WeaponSystem {
         [SerializeField] private Collider _capsule;
         [SerializeField] private SC_NPCEnemy _enemy;
         public enum State { Patrolling, Chasing, Attacking, Dead }
+        EndGame endGame = new EndGame();
 
         void Awake() 
         {
@@ -22,13 +23,18 @@ namespace XtremeFPS.WeaponSystem {
         public void Damage(float damage) {
             health -= damage;
             if (health <= 0) {
-                _view.DisableAnimator();
-                _ragdollHandler.Enable();
-                _enemy.currentState = (SC_NPCEnemy.State)State.Dead;
-                Destroy(_weapon);
-                Destroy(_capsule);
-
+                Dead();
             }
+        }
+
+        public void Dead()
+        {
+            _view.DisableAnimator();
+            _ragdollHandler.Enable();
+            _enemy.currentState = (SC_NPCEnemy.State)State.Dead;
+            Destroy(_weapon);
+            Destroy(_capsule);
+            endGame.CheckAliveBots();
         }
     }
 }
